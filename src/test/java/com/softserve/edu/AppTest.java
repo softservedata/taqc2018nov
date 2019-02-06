@@ -21,7 +21,7 @@ public class AppTest {
 		Assert.assertTrue(true);
 	}
 
-	//@Test
+	@Test
 	public void testApp1() throws Exception {
 		System.out.println("surefire.reports.directory = " + System.getProperty("surefire.reports.directory"));
 		System.out.println("selenium.version = " + System.getProperty("selenium.version"));
@@ -36,7 +36,7 @@ public class AppTest {
 		};
 	}
 
-	@Test(dataProvider = "concurrencyData")
+	//@Test(dataProvider = "concurrencyData")
 	public void checkSeleniumIDE(String s) throws InterruptedException {
 		System.out.println("this.getClass().getResource(\"/chromedriver-windows-32bit.exe\").getPath() = "
 				+ this.getClass().getResource("/chromedriver-windows-32bit.exe").getPath());
@@ -78,6 +78,54 @@ public class AppTest {
 		driver.quit();
 		//
 		System.out.println("done");
+	}
+
+	//@Test
+	public void testRegres() throws Exception {
+		// Precondition
+		System.setProperty("webdriver.chrome.driver",
+				this.getClass().getResource("/chromedriver-windows-32bit.exe").getPath().substring(1));
+		WebDriver driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		//
+		driver.get("http://regres.herokuapp.com/login");
+		Thread.sleep(1000); // For Presentation Only
+		//
+		// Steps
+		driver.findElement(By.id("login")).click();
+		driver.findElement(By.id("login")).clear();
+		driver.findElement(By.id("login")).sendKeys("work");
+		Thread.sleep(1000);
+		//
+		driver.findElement(By.id("password")).click();
+		driver.findElement(By.id("password")).clear();
+		driver.findElement(By.id("password")).sendKeys("qwerty");
+		Thread.sleep(1000);
+		//
+		// Button Login
+		driver.findElement(By.cssSelector(".btn.btn-primary")).click();
+		Thread.sleep(1000);
+		//
+		// Check
+		Assert.assertEquals("work",
+				driver.findElement(By.cssSelector(".btn.btn-primary.btn-sm:not(.dropdown-toggle)")).getText(),
+				"Error profile name");
+		Thread.sleep(1000);
+		//
+		// Steps
+		// Open Drop-Down
+		driver.findElement(By.cssSelector(".btn.btn-primary.btn-sm.dropdown-toggle")).click();
+		Thread.sleep(1000);
+		//
+		// Button Logout
+		driver.findElement(By.xpath("//a[contains(@href,'logout')]")).click();
+		Thread.sleep(1000);
+		//
+		// Check
+		Assert.assertTrue(driver.findElement(By.cssSelector("img")).getAttribute("src").contains("ukraine_logo2.gif"));
+		Thread.sleep(2000);
+		//
+		driver.quit();
 	}
 
 }
