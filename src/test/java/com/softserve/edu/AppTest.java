@@ -1,5 +1,6 @@
 package com.softserve.edu;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -124,6 +125,27 @@ public class AppTest {
 		// Check
 		Assert.assertTrue(driver.findElement(By.cssSelector("img")).getAttribute("src").contains("ukraine_logo2.gif"));
 		Thread.sleep(2000);
+		//
+		driver.quit();
+	}
+
+	@Test
+	public void testRegres2() throws Exception {
+		// Precondition
+		System.setProperty("webdriver.chrome.driver",
+				this.getClass().getResource("/chromedriver-windows-32bit.exe").getPath().substring(1));
+		WebDriver driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		//
+		driver.get("http://regres.herokuapp.com/login");
+		Thread.sleep(1000); // For Presentation Only
+		//
+		// Steps
+		List<WebElement> myElem = driver.findElements(By.id("hahaha"));
+		Thread.sleep(1000);
+		System.out.println("myElem.size() = " + myElem.size());
+		//
+		// Check
 		//
 		driver.quit();
 	}

@@ -8,6 +8,8 @@ import com.softserve.edu.poclassic.data.User;
 import com.softserve.edu.poclassic.data.UserRepository;
 import com.softserve.edu.poclassic.pages.LoginPage;
 import com.softserve.edu.poclassic.pages.RegistratorHomePage;
+import com.softserve.edu.poclassic.pages.ValidatorLoginPage;
+import com.softserve.edu.poclassic.pages.TopUnit.ChangeLanguageFields;
 
 public class SmokeTest extends TestRunner {
 
@@ -18,7 +20,7 @@ public class SmokeTest extends TestRunner {
 			};
 	}
 
-	@Test(dataProvider = "validUsers")
+	//@Test(dataProvider = "validUsers")
 	public void checkLogin(User validUser) {
 		// Precondition
 		//
@@ -38,6 +40,52 @@ public class SmokeTest extends TestRunner {
 				.contains(LoginPage.NAME_IMAGE));
 		//
 		// Return to previous state
+	}
+
+	@DataProvider//(parallel = true)
+	public Object[][] invalidUsers() {
+		return new Object[][] {
+            { UserRepository.getInvalid() },
+			};
+	}
+
+	//@Test(dataProvider = "invalidUsers")
+	public void checkInvalidLogin(User invalidUser) {
+		// Precondition
+		//
+		// Steps
+		ValidatorLoginPage validatorLoginPage = loadApplication()
+				.unsuccessfulLogin(invalidUser);
+		//
+		// Check
+		Assert.assertTrue(validatorLoginPage.getValidatorMessageText()
+				.contains(ValidatorLoginPage.VALIDATOR_MESSAGE));
+		//
+		// Return to previous state
+	}
+
+	
+	@DataProvider//(parallel = true)
+	public Object[][] userLocalization() {
+		return new Object[][] {
+            { UserRepository.getExist(), ChangeLanguageFields.ENGLISH },
+			};
+	}
+
+	//@Test(dataProvider = "userLocalization")
+	public void checkRefresh(User validUser, ChangeLanguageFields language) {
+		// Precondition
+		//
+		// Steps
+		LoginPage loginPage = loadApplication();
+		//
+		//loginPage = loginPage.changeLanguage(language);
+		loginPage.changeLanguage(language);
+		//
+		loginPage = loginPage
+			.successRegistratorLogin(validUser)
+			.logout();
+		//
 	}
 
 }

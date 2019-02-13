@@ -1,4 +1,4 @@
-package com.softserve.edu.poclassic.data;
+package com.softserve.edu.pofactory.data;
 
 public final class UserRepository {
 

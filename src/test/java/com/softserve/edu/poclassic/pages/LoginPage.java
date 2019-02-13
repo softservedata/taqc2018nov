@@ -42,33 +42,44 @@ public class LoginPage extends TopUnit {
 	private static final String SIGNIN_CSSSELECTOR = "button.btn.btn-primary";
 	private static final String LOGO_CSSSELECTOR = "img.login_logo.col-md-8.col-xs-12";
 
-	private WebElement loginLabel;
-	private WebElement loginInput;
-	private WebElement passwordLabel;
-	private WebElement passwordInput;
-	private WebElement signin;
-	private WebElement logo;
+//	private WebElement loginLabel;
+//	private WebElement loginInput;
+//	private WebElement passwordLabel;
+//	private WebElement passwordInput;
+//	private WebElement signin;
+//	private WebElement logo;
 
 	public LoginPage(WebDriver driver) {
 		super(driver);
 		//
-		initElements();
+		//initElements();
+		checkElements();
 	}
 
-	private void initElements() {
-		loginLabel = driver.findElement(By.xpath(LOGIN_LABEL_XPATH));
-		loginInput = driver.findElement(By.id(LOGIN_INPUT_ID));
-		passwordLabel = driver.findElement(By.xpath(PASSWORD_LABEL_XPATH));
-		passwordInput = driver.findElement(By.id(PASSWORD_INPUT_ID));
-		signin = driver.findElement(By.cssSelector(SIGNIN_CSSSELECTOR));
-		logo = driver.findElement(By.cssSelector(LOGO_CSSSELECTOR));
+//	private void initElements() {
+//		loginLabel = driver.findElement(By.xpath(LOGIN_LABEL_XPATH));
+//		loginInput = driver.findElement(By.id(LOGIN_INPUT_ID));
+//		passwordLabel = driver.findElement(By.xpath(PASSWORD_LABEL_XPATH));
+//		passwordInput = driver.findElement(By.id(PASSWORD_INPUT_ID));
+//		signin = driver.findElement(By.cssSelector(SIGNIN_CSSSELECTOR));
+//		logo = driver.findElement(By.cssSelector(LOGO_CSSSELECTOR));
+//	}
+
+	private void checkElements() {
+		getLoginLabel();
+		getLoginInput();
+		getPasswordLabel();
+		getPasswordInput();
+		getSignin();
+		getLogo();
 	}
 
 	// Page Object
 
 	// loginLabel
 	public WebElement getLoginLabel() {
-		return loginLabel;
+		//return loginLabel;
+		return driver.findElement(By.xpath(LOGIN_LABEL_XPATH));
 	}
 
 	public String getLoginLabelText() {
@@ -77,7 +88,8 @@ public class LoginPage extends TopUnit {
 
 	// loginInput
 	public WebElement getLoginInput() {
-		return loginInput;
+		//return loginInput;
+		return driver.findElement(By.id(LOGIN_INPUT_ID));
 	}
 
 	public String getLoginInputAttributeText(String attribute) {
@@ -107,7 +119,8 @@ public class LoginPage extends TopUnit {
 
 	// passwordLabel
 	public WebElement getPasswordLabel() {
-		return passwordLabel;
+		//return passwordLabel;
+		return driver.findElement(By.xpath(PASSWORD_LABEL_XPATH));
 	}
 
 	public String getPasswordLabelText() {
@@ -116,7 +129,8 @@ public class LoginPage extends TopUnit {
 
 	// passwordInput
 	public WebElement getPasswordInput() {
-		return passwordInput;
+		//return passwordInput;
+		return driver.findElement(By.id(PASSWORD_INPUT_ID));
 	}
 
 	public String getPasswordInputAttributeText(String attribute) {
@@ -146,7 +160,8 @@ public class LoginPage extends TopUnit {
 
 	// signin
 	public WebElement getSignin() {
-		return signin;
+		//return signin;
+		return driver.findElement(By.cssSelector(SIGNIN_CSSSELECTOR));
 	}
 
 	public String getSignintText() {
@@ -159,7 +174,8 @@ public class LoginPage extends TopUnit {
 
 	// logo
 	public WebElement getLogo() {
-		return logo;
+		//return logo;
+		return driver.findElement(By.cssSelector(LOGO_CSSSELECTOR));
 	}
 
 	public String getLogoAttributeText(String attribute) {
@@ -185,9 +201,9 @@ public class LoginPage extends TopUnit {
 		return new LoginPage(driver);
 	}
 	
-	public LoginPage unsuccessfulLogin(User invalidUser) {
+	public ValidatorLoginPage unsuccessfulLogin(User invalidUser) {
         setLoginData(invalidUser);
-        return new LoginPage(driver); 
+        return new ValidatorLoginPage(driver); 
     }
 
 //	public AdminHomePage successAdminLogin(User admin) {

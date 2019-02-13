@@ -83,14 +83,14 @@ public class RegistratorHomePage extends TopUnit {
 		dropdownToggleComponent = new DropdownToggleComponent();
 	}
 	
-	private void clockSignout() {
+	private void clickSignout() {
 		openDropdownToggleComponent();
 		dropdownToggleComponent.clickSingout();
 	}
 
 	// Business Logic
 	public LoginPage logout() {
-		clockSignout();
+		clickSignout();
 		return new LoginPage(driver);
 	}
 }
