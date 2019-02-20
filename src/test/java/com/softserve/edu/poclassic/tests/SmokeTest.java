@@ -22,6 +22,7 @@ public class SmokeTest extends TestRunner {
 
 	//@Test(dataProvider = "validUsers")
 	public void checkLogin(User validUser) {
+		// Info
 		// Precondition
 		//
 		// Steps
@@ -40,6 +41,7 @@ public class SmokeTest extends TestRunner {
 				.contains(LoginPage.NAME_IMAGE));
 		//
 		// Return to previous state
+		// Info
 	}
 
 	@DataProvider//(parallel = true)

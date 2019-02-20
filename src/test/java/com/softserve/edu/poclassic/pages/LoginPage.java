@@ -189,9 +189,13 @@ public class LoginPage extends TopUnit {
 	// Functional
 	
 	private void setLoginData(User user) {
+		// Debug
 		setLoginInputClear(user.getLogin());
+		// Trace
 		setPasswordInputClear(user.getPassword());
+		// Trace
 		clickSignin();
+		// Debug
 	}
 	
 	// Business Logic

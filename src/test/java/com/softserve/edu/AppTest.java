@@ -129,7 +129,7 @@ public class AppTest {
 		driver.quit();
 	}
 
-	@Test
+	//@Test
 	public void testRegres2() throws Exception {
 		// Precondition
 		System.setProperty("webdriver.chrome.driver",
