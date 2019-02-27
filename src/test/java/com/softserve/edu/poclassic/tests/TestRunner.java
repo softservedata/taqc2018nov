@@ -50,7 +50,9 @@ public abstract class TestRunner {
 	@AfterMethod
 	public void afterMethod(ITestResult testResult) {
 		if (!testResult.isSuccess()) {
-		    saveImageAttach(getFileName());
+		    String fileName = getFileName();
+		    saveImageAttach(fileName);
+		    saveTextAttach(fileName + ".txt");
 			driver.get("http://regres.herokuapp.com/logout");
 		}
 	}
@@ -76,6 +78,11 @@ public abstract class TestRunner {
             e.printStackTrace();
         }
         return result;
+    }
+    
+    @Attachment(value = "{0}", type = "text/plain")
+    private String saveTextAttach(String attachName) {
+        return driver.getPageSource();
     }
 }
 

@@ -8,8 +8,9 @@ import com.softserve.edu.poclassic.data.User;
 import com.softserve.edu.poclassic.data.UserRepository;
 import com.softserve.edu.poclassic.pages.LoginPage;
 import com.softserve.edu.poclassic.pages.RegistratorHomePage;
-import com.softserve.edu.poclassic.pages.ValidatorLoginPage;
 import com.softserve.edu.poclassic.pages.TopUnit.ChangeLanguageFields;
+import com.softserve.edu.poclassic.pages.ValidatorLoginPage;
+import com.softserve.edu.poclassic.tools.ListUtils;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
@@ -26,13 +27,20 @@ public class SmokeTest extends TestRunner {
 	public Object[][] validUsers() {
 		return new Object[][] {
             { UserRepository.getExist() },
+            //{ UserRepository.getExist() },
 			};
 	}
+
+    @DataProvider // (parallel = true)
+    public Object[][] validCSVUsers() {
+        return ListUtils.toMultiArray(UserRepository.fromCsv());
+    }
 
     @Description("@Description class AllureTest; testRegres().")
     @Severity(SeverityLevel.NORMAL)
     @Story("@Story check_Product_Currency STORY")
-	@Test(dataProvider = "validUsers")
+	//@Test(dataProvider = "validUsers")
+    @Test(dataProvider = "validCSVUsers")
 	public void checkLogin(User validUser) {
 		// Info
 		// Precondition
@@ -50,7 +58,7 @@ public class SmokeTest extends TestRunner {
 		//
 		// Check
 		Assert.assertTrue(loginPage.getLogoAttributeSrcText()
-				.contains("111" + LoginPage.NAME_IMAGE));
+				.contains(LoginPage.NAME_IMAGE));
 		//
 		// Return to previous state
 		// Info
