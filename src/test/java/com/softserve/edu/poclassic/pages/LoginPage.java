@@ -8,6 +8,8 @@ import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.poclassic.data.User;
 
+import io.qameta.allure.Step;
+
 public class LoginPage extends TopUnit {
 
 	public static enum LoginPageL10n {
@@ -188,6 +190,7 @@ public class LoginPage extends TopUnit {
 	
 	// Functional
 	
+	@Step("@Step setLoginData")
 	private void setLoginData(User user) {
 		// Debug
 		setLoginInputClear(user.getLogin());
@@ -200,11 +203,13 @@ public class LoginPage extends TopUnit {
 	
 	// Business Logic
 	
+	@Step("@Step changeLanguage")
 	public LoginPage changeLanguage(ChangeLanguageFields language) {
 		selectChangeLanguage(language);
 		return new LoginPage(driver);
 	}
 	
+	@Step("@Step unsuccessfulLogin")
 	public ValidatorLoginPage unsuccessfulLogin(User invalidUser) {
         setLoginData(invalidUser);
         return new ValidatorLoginPage(driver); 
@@ -215,6 +220,7 @@ public class LoginPage extends TopUnit {
 //		return new AdminHomePage();
 //	}
 
+	@Step("@Step successRegistratorLogin")
 	public RegistratorHomePage successRegistratorLogin(User registrator) {
 		setLoginData(registrator);
 		return new RegistratorHomePage(driver);

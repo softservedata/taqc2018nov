@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import io.qameta.allure.Step;
+
 public abstract class TopUnit {
 
 	public static enum ChangeLanguageFields {
@@ -86,6 +88,7 @@ public abstract class TopUnit {
 
 	// Functional
 
+	@Step("@Step selectChangeLanguage")
 	public void selectChangeLanguage(ChangeLanguageFields language) {
 		setChangeLanguage(language.toString());
 	}

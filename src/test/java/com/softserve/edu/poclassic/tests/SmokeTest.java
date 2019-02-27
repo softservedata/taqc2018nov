@@ -11,6 +11,15 @@ import com.softserve.edu.poclassic.pages.RegistratorHomePage;
 import com.softserve.edu.poclassic.pages.ValidatorLoginPage;
 import com.softserve.edu.poclassic.pages.TopUnit.ChangeLanguageFields;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
+
+@Epic("@Epic AllureTest")
+@Feature("@Feature Login_Application_Test")
 public class SmokeTest extends TestRunner {
 
 	@DataProvider//(parallel = true)
@@ -20,7 +29,10 @@ public class SmokeTest extends TestRunner {
 			};
 	}
 
-	//@Test(dataProvider = "validUsers")
+    @Description("@Description class AllureTest; testRegres().")
+    @Severity(SeverityLevel.NORMAL)
+    @Story("@Story check_Product_Currency STORY")
+	@Test(dataProvider = "validUsers")
 	public void checkLogin(User validUser) {
 		// Info
 		// Precondition
@@ -38,7 +50,7 @@ public class SmokeTest extends TestRunner {
 		//
 		// Check
 		Assert.assertTrue(loginPage.getLogoAttributeSrcText()
-				.contains(LoginPage.NAME_IMAGE));
+				.contains("111" + LoginPage.NAME_IMAGE));
 		//
 		// Return to previous state
 		// Info

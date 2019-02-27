@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.poclassic.data.User;
 
+import io.qameta.allure.Step;
+
 public class RegistratorHomePage extends TopUnit {
 
 	private class DropdownToggleComponent {
@@ -89,6 +91,8 @@ public class RegistratorHomePage extends TopUnit {
 	}
 
 	// Business Logic
+	
+	@Step("@Step Logout")
 	public LoginPage logout() {
 		clickSignout();
 		return new LoginPage(driver);
