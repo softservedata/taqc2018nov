@@ -3,6 +3,7 @@ package com.softserve.edu.poclassic.data;
 import java.util.List;
 
 import com.softserve.edu.poclassic.tools.CSVReader;
+import com.softserve.edu.poclassic.tools.ExcelReader;
 
 public final class UserRepository {
 
@@ -25,5 +26,12 @@ public final class UserRepository {
         return fromCsv("users.csv");
     }
 
+    public static List<User> fromExcel(String filename) {
+        return User.getByLists(new ExcelReader(filename).getAllCells());
+    }
+
+    public static List<User> fromExcel() {
+        return fromExcel("users.xlsx");
+    }
 	
 }

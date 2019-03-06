@@ -1,8 +1,11 @@
 package com.softserve.edu.poclassic.tools;
 import java.util.List;
 
-public class ListUtils {
+public final class ListUtils {
 
+    private ListUtils() {
+    }
+    
 	public static Object[][] toMultiArray(List<?> list) {
 		Object[][] array = new Object[list.size()][1];
 		for (int i = 0; i < list.size(); i++) {

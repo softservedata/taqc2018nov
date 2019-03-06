@@ -10,7 +10,7 @@ public interface IExternalReader {
 
     // String getPath();
 
-    List<List<String>> getAllCells();
+    List<List<String>> getAllCells(); // public abstract
 
     List<List<String>> getAllCells(String path);
 

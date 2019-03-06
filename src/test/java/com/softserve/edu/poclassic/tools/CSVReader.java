@@ -7,29 +7,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public final class CSVReader implements IFileReader {
+public final class CSVReader extends AFileReader {
 
-	private final String PATH_SEPARATOR = "/";
 	private final String CSV_SPLIT_BY = ";";
-	private String filename;
-	private String path;
 
 	public CSVReader(String filename) {
-		this.filename = filename;
-		this.path = this.getClass().getResource(PATH_SEPARATOR + filename).getPath().substring(1);
-		System.out.println("***PATH = " + path);
-	}
-
-	public String getFilename() {
-		return this.filename;
-	}
-
-	public String getPath() {
-		return this.path;
-	}
-
-	public List<List<String>> getAllCells() {
-		return getAllCells(path);
+	    super(filename);
 	}
 
 	public List<List<String>> getAllCells(String path) {

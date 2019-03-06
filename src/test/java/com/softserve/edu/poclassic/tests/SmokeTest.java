@@ -36,11 +36,17 @@ public class SmokeTest extends TestRunner {
         return ListUtils.toMultiArray(UserRepository.fromCsv());
     }
 
+    @DataProvider // (parallel = true)
+    public Object[][] validExcelUsers() {
+        return ListUtils.toMultiArray(UserRepository.fromExcel());
+    }
+
     @Description("@Description class AllureTest; testRegres().")
     @Severity(SeverityLevel.NORMAL)
     @Story("@Story check_Product_Currency STORY")
 	//@Test(dataProvider = "validUsers")
-    @Test(dataProvider = "validCSVUsers")
+    //@Test(dataProvider = "validCSVUsers")
+    @Test(dataProvider = "validExcelUsers")
 	public void checkLogin(User validUser) {
 		// Info
 		// Precondition
