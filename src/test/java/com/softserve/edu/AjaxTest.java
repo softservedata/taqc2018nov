@@ -24,7 +24,8 @@ public class AjaxTest {
         Thread.sleep(2000); // Do no use
 	    //
 		// Move to Element by JavaScript Injection
-	    WebElement position = driver.findElement(By.id("using-paging-with-other-data-processing-plugins"));
+	    //WebElement position = driver.findElement(By.id("using-paging-with-other-data-processing-plugins"));
+        WebElement position = driver.findElement(By.id("use-paging-with-other-data-processing-plugins"));
 	    //WebElement position = driver.findElement(By.cssSelector("#using-paging-with-other-data-processing-plugins"));
 	    JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].scrollIntoView(true);", position);

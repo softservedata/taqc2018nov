@@ -1,7 +1,10 @@
 package com.softserve.edu.data;
 
+import java.util.Calendar;
+
 public class Appl {
     public static void main(String[] args) {
+    	//Calendar calendar; 
         //
         // 1. Use Classic Constructor
 //        User user = new User("login1", "password1", "email1",
