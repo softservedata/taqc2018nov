@@ -37,7 +37,7 @@ public class SelenideAjaxTest {
         		this.getClass().getResource("/chromedriver-windows-32bit.exe").getPath().substring(1));
         Configuration.browser = "chrome";
         Configuration.startMaximized = true;
-        Configuration.timeout = 10;
+        Configuration.timeout = 30;
         //
         open("https://devexpress.github.io/devextreme-reactive/react/grid/docs/guides/paging/");
     }
